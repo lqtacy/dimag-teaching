@@ -9,10 +9,6 @@ public class Employee {
 	private static final String ABC = "abc"; //class variable. Static variable
 
 
-	public Employee() {
-
-	}
-
 	/**
 	 * We create an employee instance here.
 	 * @param name the name of employee

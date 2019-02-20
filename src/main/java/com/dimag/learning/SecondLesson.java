@@ -84,12 +84,6 @@ public class SecondLesson {
 		writer.write("hello world...");
 		writer.close();
 
-		//Birinci isci
-		// isci=instance of an object
-		//Employee object
-		Employee isci1 = new Employee();
-		isci1.setName("John Doe");
-		isci1.setAge(44);
 
 
 		PrintWriter writer2 = new PrintWriter("test.txt");
@@ -115,7 +109,6 @@ public class SecondLesson {
 
 		System.out.println(Employee.getABC());
 
-		System.out.println("Employee=" + isci1);
 		System.out.println("Employee=" + e1);
 
 		e1.setAge(100);

@@ -6,8 +6,9 @@ import java.util.List;
 public class Employees {
 	private List<Employee> employeeList = new ArrayList<>();
 
-	public void addEmployee(Employee employee) {
+	public Employees addEmployee(Employee employee) {
 		this.employeeList.add(employee);
+		return this;
 	}
 
 	public List<Employee> getEmployeeList() {
@@ -19,9 +20,26 @@ public class Employees {
 		return this;
 	}
 
-	public boolean hasEmployee(String name){
+	public boolean hasEmployee(String name) {
+		return hasEmployeeMethod1(name);
 
-		//eger employee bulunuyorsa, true, yoksa false return etsin.
-		return false;
 	}
+
+
+	private boolean hasEmployeeMethod1(String name) {
+		boolean found = false;
+		for (Employee employee : employeeList) {
+			if (employee.getName().equals(name)) {
+				found = true;
+				break;
+			}
+		}
+
+		return found;
+	}
+
+	private boolean hasEmployeeMethod2(String name) {
+		return employeeList.stream().anyMatch(e -> e.getName().equals(name));
+	}
+
 }

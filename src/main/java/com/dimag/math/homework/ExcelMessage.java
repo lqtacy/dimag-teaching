@@ -9,6 +9,16 @@ public class ExcelMessage implements Message {
 
 	@Override
 	public String toFancyString() {
-		return null; //firstname,lastname,email
+		return String.join(",", employee.getFirstName(), employee.getLastName(), employee.getEmail()); //firstname,lastname,email
+	}
+
+
+	public static void main(String[] args) {
+		ExcelMessage message  = new ExcelMessage(new Employee("Hasari", "Tosun", "ht@gmail.com"));
+		System.out.println(message.toFancyString());
+	}
+
+	public  String header(){
+		return "#firstName,lastName,email";
 	}
 }

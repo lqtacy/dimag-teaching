@@ -35,6 +35,14 @@ class Param {
 public class MathOperators {
 	public static void main(String[] args) {
 
+		String xxx = Operator.OP;
+		//Operator op = new Operator(); //you cannot initialize interfaces
+		Operator op = new SubstractionOperator();
+		//op.display();
+		SubstractionOperator opx = (SubstractionOperator) op;
+		opx.display();
+
+
 		List<Operator> operators = new ArrayList<>();
 		operators.add(new AdditionOperator());
 		operators.add(new AdditionOperator());

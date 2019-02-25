@@ -9,4 +9,8 @@ public class SubstractionOperator implements Operator {
 	public String getName() {
 		return "SUB_" + Operator.getOperatorSuffix();
 	}
+
+	public void display(){
+
+	}
 }

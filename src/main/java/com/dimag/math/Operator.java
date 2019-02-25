@@ -1,9 +1,9 @@
 package com.dimag.math;
 
 public interface Operator {
-	String OP = "OPERATOR"; //final static sabit
+	String OP = "OPERATOR"; //final static
 
-	double process(int a, int b);
+	double process(int a, int b); //no {body}
 
 	String getName();
 
@@ -13,7 +13,7 @@ public interface Operator {
 		return OP;
 	}
 
-	//instance method gibi. It has a body.
+	//Java8: instance method gibi. It has a body.
 	default double add(int a, int b) {
 		return a + b;
 	}

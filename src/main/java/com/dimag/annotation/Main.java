@@ -1,34 +1,27 @@
-package com.dimag.cmd;
+package com.dimag.annotation;
 
-import com.dimag.cmd.processor.CleanFiles;
+import org.reflections.Reflections;
 
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class Main {
-
-	//Properties
-	private Properties properties = new Properties();
-
 
 	private Map<String, Processor> processorMap = new HashMap();
 
 	public Main() throws Exception {
-		properties.load(new FileReader("./src/main/resources/commands.properties"));
-		for (Object key : properties.keySet()) {
-			addProcessor((String) key, (String) properties.get(key));
+		Reflections ref = new Reflections("com.dimag.annotation.processor");
+		for (Class<?> cl : ref.getTypesAnnotatedWith(Task.class)) {
+			Task annotation = cl.getAnnotation(Task.class);
+			String description = annotation.description();
+			System.out.println("Adding processor:"+annotation.name()+" ==>"+description);
+			addProcessor(annotation.name(), cl);
 		}
 
 	}
 
-	public void addProcessor(String name, String value) throws Exception {
-		//Java Reflection:com.dimag.cmd.processor.CleanFiles -> com.dimag.cmd.processor.CleanFiles.class
-		Class clazz = Class.forName(value);
+	public void addProcessor(String name, Class clazz) throws Exception {
 		Processor processor = (Processor) clazz.getDeclaredConstructor().newInstance();
-		//Processor cleanFiles = new CleanFiles()
-
 		processorMap.put(name, processor);
 
 	}

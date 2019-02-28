@@ -27,9 +27,21 @@ public class Main {
 		Employee employee = employeeCache.getEmployee();
 		System.out.println(employee);
 
-		CacheFactory factory = CacheFactory.newInstance(true);
+		CacheFactory factory = CacheFactory.newInstance(true).setX(89).setY(90);
 		CacheFactory factory2 = CacheFactory.newInstance(true);
 		CacheFactory factory3 = CacheFactory.newInstance(true);
+
+		if (factory2.equals(factory)) {
+			System.out.println("equals1");
+		}
+
+		if (factory2 == factory) {
+			System.out.println("equals2");
+		}
+
+
+		System.out.println("factory:" + factory);
+		System.out.println("factory:" + factory3);
 
 
 	}

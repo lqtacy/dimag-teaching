@@ -14,12 +14,16 @@ public class Tokenizer {
 	}
 
 	public static List<String> uniquePhrases(Map<String, List<String>> phrases) {
-		//listA = [] bos liste
-		//her phrases elemani listB icin:
-		//   her listB elemani p icin:
-		//       eger p listA in icinde degilse:
-					//list A ya ekle.
-		return null;
+		List<String> unitedList = new ArrayList<>(); 	//listA = [] bos liste
+
+		phrases.forEach((key,value) -> { 				// her phrases elemani listB icin:
+			value.forEach(str -> {						// her listB elemani p icin:
+				if (!unitedList.contains(str)){			// eger p listA in icinde degilse:
+					unitedList.add(str); 				//list A ya ekle.
+				}
+			});
+		});
+		return unitedList;
 	}
 
 	public List<String> ngrams(List<String> oneGrams, int n) {
@@ -41,11 +45,27 @@ public class Tokenizer {
 	}
 
 	public Map<String, Integer> calculateFrequencies(String text) {
-		//1: single list of phrases
-		//tokenize
-		//create n-grams
-		//calculate frequencies
-		return null;
+
+		Tokenizer tokenizer = new Tokenizer();
+		List<String> tokens = tokenizer.tokenize(text);						//tokenize
+
+		for (int i = 2; i < 5 ; i++) {
+			tokens.addAll(tokenizer.ngrams(tokenizer.tokenize(text),i));	//create n-grams
+		}
+
+		List<String> checkPhrases = uniquePhrases(PHRASES); 				//1: single list of phrases
+
+		Map<String, Integer> wordFrequencyMap = new HashMap<>();			//calculate frequencies
+		for (int i = 0; i <checkPhrases.size() ; i++) {
+			Integer wordCount = 0;
+			for (int j = 0; j < tokens.size(); j++) {
+				if (checkPhrases.get(i).equals(tokens.get(j))){
+					wordCount++;
+				}
+			}
+			wordFrequencyMap.put(checkPhrases.get(i), wordCount);
+		}
+		return wordFrequencyMap;
 	}
 
 	public static void main(String[] args) {
@@ -53,14 +73,6 @@ public class Tokenizer {
 				"However, he had a read beak. In addition to white the patches on the wings, he was completely yellow. " +
 				"In summary, it was yellow bird. In summary, it did not sing.";
 
-
-		Tokenizer tokenizer = new Tokenizer();
-
-		List<String> tokens = tokenizer.tokenize(text);
-		System.out.println(tokens);
-
-		List<String> ngrams = tokenizer.ngrams(tokens, 3);
-		System.out.println(ngrams);
-
+		new Tokenizer().calculateFrequencies(text).forEach((key,value) -> System.out.println(key + "==>" + value));
 	}
 }

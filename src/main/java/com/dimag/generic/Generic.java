@@ -84,13 +84,27 @@ public class Generic {
 		employeeMap.put("yakob", new Employee("Yakob", 10));
 
 
-		for (String key: employeeMap.keySet()){
-			System.out.println(key+"="+ employeeMap.get(key));
+		for (String key : employeeMap.keySet()) {
+			System.out.println(key + "=" + employeeMap.get(key));
 		}
 
-		for (Employee employee: employeeMap.values()){
+		for (Employee employee : employeeMap.values()) {
 			System.out.println(employee);
 		}
+
+		for (Map.Entry<String, Employee> entry : employeeMap.entrySet()) {
+			System.out.println("Key=" + entry.getKey() + " value=" + entry.getValue());
+		}
+
+		if (!employeeMap.containsKey("eyub")) {
+			employeeMap.put("eyub", new Employee("Eyub2", 23));
+		}
+
+		employeeMap.putIfAbsent("eyub", new Employee("Eyub2", 23));
+
+		employeeMap.forEach((key, value) -> {
+			System.out.println("Key=" + key + " value=" + value);
+		});
 
 	}
 
@@ -101,10 +115,9 @@ public class Generic {
 		employeeMap.put(new Employee("Yakob", 10), "yakob");
 
 
-		for (Employee key: employeeMap.keySet()){
-			System.out.println(key+"="+ employeeMap.get(key));
+		for (Employee key : employeeMap.keySet()) {
+			System.out.println(key + "=" + employeeMap.get(key));
 		}
-
 
 
 	}

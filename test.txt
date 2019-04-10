@@ -1,0 +1,7 @@
+- I/O
+- default methods
+- collections pipeline
+- Functional programming
+
+
+

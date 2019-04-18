@@ -1,29 +1,35 @@
-# dictionary
-employees = {"haydar": 34, "Mehmet": 30, "Ahmet": 20}
-for name in employees:
-    print(name)
+def test():
+    # dictionary
+    employees = {"haydar": 34, "Mehmet": 30, "Ahmet": 20}
+    for name in employees:
+        print(name)
 
-for name, age in employees.items():
-    print(name, "==>", age)
-
-
-#scope: bir degiskenin actif oldugu alan
-
-def add(sayilar):
-    total = 0
-    for i in range(0, len(sayilar)):
-        total = total + sayilar[i]
-
-    sayilar.clear()
-    sayilar = []
-    return total
+    for name, age in employees.items():
+        print(name, "==>", age)
 
 
-print("---------------------------------------------")
-numbers = [7,8,1,2]
+    #scope: bir degiskenin actif oldugu alan
 
-print (numbers)
-result = add(numbers)
-print (numbers)
+    def add(sayilar):
+        total = 0
+        for i in range(0, len(sayilar)):
+            total = total + sayilar[i]
 
-print(result)
+        #sayilar.clear()
+        sayilar = []
+        return total
+
+
+    print("---------------------------------------------")
+    numbers = [7,8,1,2]
+
+    print (numbers)
+    result = add(numbers)
+    print (numbers)
+
+    print(result)
+
+
+if __name__ == "__main__":
+   print("deneme....")
+   test()

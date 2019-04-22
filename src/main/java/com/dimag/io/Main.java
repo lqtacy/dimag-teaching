@@ -1,4 +1,4 @@
-package com.io;
+package com.dimag.io;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +15,7 @@ public class Main {
 			List<String> lines = Files.readAllLines(p);
 			lines.forEach(System.out::println);
 
-			Files.write(Paths.get("./test3.txt"), lines);
+			Files.write(Paths.get("./test_freq.txt"), lines);
 
 
 			Files.copy(p, Paths.get("./test4.txt"));

@@ -1,7 +1,4 @@
-package com.dimag.exercise;
-
-import com.dimag.text.TextProcessorException;
-import com.dimag.text.TextTool;
+package com.dimag.text;
 
 import java.util.Map;
 

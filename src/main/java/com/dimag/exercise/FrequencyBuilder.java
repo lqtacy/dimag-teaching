@@ -17,7 +17,7 @@ public class FrequencyBuilder {
 		String fileName = args[0];
 		String outputFileName = args[1];
 
-		Map<String, Integer> freq = TextTool.analyze(fileName);
+		Map<String, Integer> freq = new TextTool().analyze(fileName);
 		TextTool.writeToCsvFile(outputFileName, freq);
 
 

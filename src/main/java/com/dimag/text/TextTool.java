@@ -20,6 +20,34 @@ import static java.util.stream.Collectors.toList;
 public class TextTool {
 	private static final Logger log = Logger.getLogger(TextTool.class.getName());
 
+	//instance variable: it has a state
+	private boolean removePunctuation = true;
+	private boolean toLowerCase = true;
+
+
+
+	public static Logger getLog() {
+		return log;
+	}
+
+	public boolean isRemovePunctuation() {
+		return removePunctuation;
+	}
+
+	public boolean isToLowerCase() {
+		return toLowerCase;
+	}
+
+	public TextTool setToLowerCase(boolean toLowerCase) {
+		this.toLowerCase = toLowerCase;
+		return this;
+	}
+
+	public TextTool setRemovePunctuation(boolean removePunctuation) {
+		this.removePunctuation = removePunctuation;
+		return this;
+	}
+
 	/**
 	 * reads text from file and finds the frequencies of each word
 	 *
@@ -27,7 +55,7 @@ public class TextTool {
 	 * @return frequencies
 	 * @throws IOException if text file does not exists
 	 */
-	public static Map<String, Integer> analyze(String fileName) throws TextProcessorException {
+	public Map<String, Integer> analyze(String fileName) throws TextProcessorException {
 
 		log.debug("Analyzing text file:" + fileName);
 		Stream<String> lines = null;
@@ -38,11 +66,21 @@ public class TextTool {
 
 			throw new TextProcessorException("Cannot find the text file:" + fileName, e);
 		}
-		List<String> allWords = lines
-				.flatMap(line -> Arrays.stream(line.split(" ")))
-				.map(word -> word.toLowerCase())
-				.collect(toList());
-		return getFrequencies(allWords);
+		Stream<String> allWords = lines
+				.flatMap(line -> Arrays.stream(line.split(" ")));
+
+		if (removePunctuation) {
+			allWords = allWords.map(word -> word.replace(".", ""))
+					.map(word -> word.replace(",", ""));
+		}
+
+
+		if (toLowerCase) {
+			allWords = allWords.map(word -> word.toLowerCase());
+		}
+
+		List<String> words = allWords.collect(toList());
+		return analyze(words);
 
 	}
 
@@ -52,7 +90,7 @@ public class TextTool {
 	 * @param allWords list of words
 	 * @return frequencies
 	 */
-	public static Map<String, Integer> getFrequencies(List<String> allWords) {
+	public static Map<String, Integer> analyze(List<String> allWords) {
 		log.debug("Calculating frequencies...");
 
 		Map<String, Integer> frequencies = new HashMap<>();

@@ -6,7 +6,7 @@ group 'com.dimag.teaching'
 version '1.0-SNAPSHOT'
 
 
-sourceCompatibility = 1.10
+sourceCompatibility = 10
 
 
 repositories {

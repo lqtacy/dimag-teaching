@@ -25,7 +25,7 @@ public class FrequencyBuilder {
 				.setRemovePunctuation(removePunctuation)
 				.setToLowerCase(toLowerCase);
 
-		Map<String, Integer> freq = textTool.analyze(fileName);
+		Map<String, Integer> freq = textTool.analyzeFile(fileName);
 		TextTool.writeToCsvFile(outputFileName, freq);
 
 	}

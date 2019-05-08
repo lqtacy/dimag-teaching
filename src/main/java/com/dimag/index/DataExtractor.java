@@ -1,5 +1,7 @@
-package com.dimag.parallel;
+package com.dimag.index;
 
+
+import com.dimag.text.TextProcessorException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -44,37 +46,45 @@ public class DataExtractor {
 
 
 	private HttpClient httpClient;
+	private Indexer indexer;
 
 	public DataExtractor() {
 		httpClient = HttpClient.newBuilder()
 				.version(HttpClient.Version.HTTP_2)
 				.build();
+		indexer = Indexer.getIndexer();
 	}
 
-	private void fetchData(String path) {
+	private void fetchData(String path) throws TextProcessorException {
 
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(path))
-				.GET()
-				.build();
-		httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-				.thenAccept(response -> {
+//		HttpRequest request = HttpRequest.newBuilder()
+//				.uri(URI.create(path))
+//				.GET()
+//				.build();
+//		httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//				.thenAccept(response -> {
+//					//indexing
+//					System.out.println("Response is:" + response);
+//					indexer.index((response.body()));
+//				});
 
-					//indexing
-					System.out.println("Response is:" + response);
-
-
-				});
-
+		String html = "<html><header><script></script><body><p>this is  test</p></body></html>";
+		indexer.index(html);
 
 	}
 
 
-	public static void main(String[] args) throws HttpFailedException, ExecutionException, InterruptedException {
+	public static void main(String[] args) throws Exception {
 		DataExtractor extractor = new DataExtractor();
 
 
-		DataExtractor.urls.stream().forEach(url -> extractor.fetchData(url));
+		DataExtractor.urls.stream().forEach(url -> {
+			try {
+				extractor.fetchData(url);
+			} catch (TextProcessorException e) {
+				e.printStackTrace();
+			}
+		});
 
 
 	}

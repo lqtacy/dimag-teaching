@@ -17,7 +17,7 @@ public class TextToolTest {
 	@Test
 	public void analyzeWithList() {
 		List<String> words = Arrays.asList("fox", "dog", "cat", "fox", "fox", "dog");
-		Map<String, Integer> frequencies = TextTool.analyze(words);
+		Map<String, Integer> frequencies = TextTool.analyzeFile(words);
 		assertNotNull(frequencies);
 		assertEquals(3, frequencies.size());
 		assertEquals(3, frequencies.get("fox").intValue());
@@ -26,6 +26,6 @@ public class TextToolTest {
 
 	@Test(expected = TextProcessorException.class)
 	public void analyzeReadingFromFile() throws TextProcessorException {
-		Map<String, Integer> frequencies = new TextTool().analyze("./test_xxx.txt");
+		Map<String, Integer> frequencies = new TextTool().analyzeFile("./test_xxx.txt");
 	}
 }

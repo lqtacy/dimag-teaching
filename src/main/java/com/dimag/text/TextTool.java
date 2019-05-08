@@ -25,7 +25,6 @@ public class TextTool {
 	private boolean toLowerCase = true;
 
 
-
 	public static Logger getLog() {
 		return log;
 	}
@@ -55,7 +54,7 @@ public class TextTool {
 	 * @return frequencies
 	 * @throws IOException if text file does not exists
 	 */
-	public Map<String, Integer> analyze(String fileName) throws TextProcessorException {
+	public Map<String, Integer> analyzeFile(String fileName) throws TextProcessorException {
 
 		log.debug("Analyzing text file:" + fileName);
 		Stream<String> lines = null;
@@ -69,19 +68,13 @@ public class TextTool {
 		Stream<String> allWords = lines
 				.flatMap(line -> Arrays.stream(line.split(" ")));
 
-		if (removePunctuation) {
-			allWords = allWords.map(word -> word.replace(".", ""))
-					.map(word -> word.replace(",", ""));
-		}
+		return analyzeFile(allWords.collect(toList()));
 
+	}
 
-		if (toLowerCase) {
-			allWords = allWords.map(word -> word.toLowerCase());
-		}
-
-		List<String> words = allWords.collect(toList());
-		return analyze(words);
-
+	public Map<String, Integer> analyzeText(String content) throws TextProcessorException {
+		List<String> words = Arrays.stream(content.split(" ")).collect(toList());
+		return this.analyzeFile(words);
 	}
 
 	/**
@@ -90,8 +83,9 @@ public class TextTool {
 	 * @param allWords list of words
 	 * @return frequencies
 	 */
-	public static Map<String, Integer> analyze(List<String> allWords) {
+	public Map<String, Integer> analyzeFile(List<String> allWords) {
 		log.debug("Calculating frequencies...");
+		allWords = removeWhiteSpace(allWords);
 
 		Map<String, Integer> frequencies = new HashMap<>();
 		allWords.forEach(word -> {
@@ -102,6 +96,21 @@ public class TextTool {
 			}
 		});
 		return frequencies;
+	}
+
+
+	public List<String> removeWhiteSpace(List<String> allWords) {
+
+		if (removePunctuation) {
+			allWords = allWords.stream().map(word -> word.replace(".", ""))
+					.map(word -> word.replace(",", "")).collect(toList());
+		}
+
+		if (toLowerCase) {
+			allWords = allWords.stream().map(word -> word.toLowerCase()).collect(toList());
+		}
+		return allWords;
+
 	}
 
 	public static void writeToCsvFile(String outputFileName, Map<String, Integer> frequencies) throws TextProcessorException {

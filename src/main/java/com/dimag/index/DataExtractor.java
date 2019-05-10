@@ -9,7 +9,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 class HttpFailedException extends Exception {
@@ -57,19 +56,31 @@ public class DataExtractor {
 
 	private void fetchData(String path) throws TextProcessorException {
 
-//		HttpRequest request = HttpRequest.newBuilder()
-//				.uri(URI.create(path))
-//				.GET()
-//				.build();
-//		httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-//				.thenAccept(response -> {
-//					//indexing
-//					System.out.println("Response is:" + response);
-//					indexer.index((response.body()));
-//				});
+		HttpRequest request = HttpRequest.newBuilder()
+				.uri(URI.create(path))
+				.GET()
+				.build();
+		/*
+		httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+				.thenAccept(response -> {
+					//indexing
+					System.out.println("Response is:" + response);
+					try {
+						indexer.index(path, (response.body()));
+					} catch (TextProcessorException e) {
+						e.printStackTrace();
+					}
+				});
+				*/
 
-		String html = "<html><header><script></script><body><p>this is  test</p></body></html>";
-		indexer.index(html);
+		try {
+			HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+			System.out.println("Response is:" + response);
+			indexer.index(path, (response.body()));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -86,6 +97,7 @@ public class DataExtractor {
 			}
 		});
 
+		System.out.println("Done...");
 
 	}
 }

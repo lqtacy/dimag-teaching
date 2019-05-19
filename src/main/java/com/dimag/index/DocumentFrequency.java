@@ -16,4 +16,12 @@ public class DocumentFrequency {
 	public int getFrequency() {
 		return frequency;
 	}
+
+	@Override
+	public String toString() {
+		return "DocumentFrequency{" +
+				"id='" + id + '\'' +
+				", frequency=" + frequency +
+				'}';
+	}
 }

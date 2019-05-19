@@ -40,18 +40,40 @@ public class DataExtractor {
 			"https://www.tutorialspoint.com/java/java_numbers.htm",
 			"https://www.tutorialspoint.com/java/java_constructors.htm",
 			"https://www.tutorialspoint.com/java/java_numbers.htm",
-			"https://www.tutorialspoint.com/java/java_methods.htm"
+			"https://www.tutorialspoint.com/java/java_methods.htm",
+			"https://www.karar.com/guncel-haberler/bakan-cavusoglu-letonyaya-gidiyor-1210998"
 	);
 
 
 	private HttpClient httpClient;
 	private Indexer indexer;
+	private Searcher searcher;
+
 
 	public DataExtractor() {
 		httpClient = HttpClient.newBuilder()
 				.version(HttpClient.Version.HTTP_2)
 				.build();
 		indexer = Indexer.getIndexer();
+		searcher = new Searcher(indexer);
+	}
+
+	public Indexer getIndexer() {
+		return indexer;
+	}
+
+	public DataExtractor setIndexer(Indexer indexer) {
+		this.indexer = indexer;
+		return this;
+	}
+
+	public Searcher getSearcher() {
+		return searcher;
+	}
+
+	public DataExtractor setSearcher(Searcher searcher) {
+		this.searcher = searcher;
+		return this;
 	}
 
 	private void fetchData(String path) throws TextProcessorException {
@@ -95,6 +117,38 @@ public class DataExtractor {
 			} catch (TextProcessorException e) {
 				e.printStackTrace();
 			}
+		});
+
+
+		List<DocumentFrequency> documents = extractor.getSearcher().search("program");
+
+		System.out.println("---------------program-----------------");
+		documents.forEach(d->{
+			System.out.println(d);
+
+		});
+
+		documents = extractor.getSearcher().search("program statement");
+
+		System.out.println("---------------statement-----------------");
+		documents.forEach(d->{
+			System.out.println(d);
+
+		});
+
+		documents = extractor.getSearcher().search("is");
+
+		System.out.println("---------------is-----------------");
+		documents.forEach(d->{
+			System.out.println(d);
+
+		});
+
+		documents = extractor.getSearcher().search("Mevlüt Çavuşoğlu");
+		System.out.println("---------------Çavuşoğlu-----------------");
+		documents.forEach(d->{
+			System.out.println(d);
+
 		});
 
 		System.out.println("Done...");

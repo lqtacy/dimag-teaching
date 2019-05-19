@@ -40,7 +40,6 @@ public class Indexer {
 
 	public void index(String path, String content) throws TextProcessorException {
 		String text = htmlRemover.removeHtml(content);
-		System.out.println(text);
 		Map<String, Integer> frequencies = textTool.analyzeText(text);
 		frequencies.keySet().stream().forEach(word->{
 			if(index.containsKey(word)){
@@ -57,5 +56,9 @@ public class Indexer {
 
 		});
 		System.out.println();
+	}
+
+	public Map<String, List<DocumentFrequency>> getIndex() {
+		return index;
 	}
 }

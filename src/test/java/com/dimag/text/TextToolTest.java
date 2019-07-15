@@ -17,7 +17,7 @@ public class TextToolTest {
 	@Test
 	public void analyzeWithList() {
 		List<String> words = Arrays.asList("fox", "dog", "cat", "fox", "fox", "dog");
-		Map<String, Integer> frequencies = TextTool.analyzeFile(words);
+		Map<String, Integer> frequencies = null;//TextTool.analyzeFile(words);
 		assertNotNull(frequencies);
 		assertEquals(3, frequencies.size());
 		assertEquals(3, frequencies.get("fox").intValue());

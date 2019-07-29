@@ -54,20 +54,3 @@ else:
     print("Uygun degildir. Cunku, ", message)
 
 
-
-#computer bir 1-100 arasinda bir sayi aklinda tutuyor (Random: gelisiguzel, rastgele)
-#10 deneme yapiyor
-#her deneme de kullanicida tahmin etmesini istiyor.
-#eger kullanicinin tahmi dogru ise, "dogru tahmin ettin, bravo" diyecek
-#eger tahmin computerun sayisindan kucuk ise, "daha buyuk" diyecek
-#buyuk is "daha kucuk" diyecek
-#10 defadan fazla dogru tahmin edemezse, "cok calis" diyecek.
-
-
-
-#rakam = 70
-#tahmin = 80
-# daha kucuk
-#tahmin = 50
-# daha  buyuk
-#

@@ -15,7 +15,7 @@ print(isim.lower())
 print(isim.split('AAA'))
 
 
-age = 12  # int sayi
+age = 12  # int (integer) sayi
 yas = '12'
 
 if age == yas:
@@ -29,7 +29,7 @@ if age == yas:
 else:
     print("XXEsit degildir.")
 
-muz_fiyati = 12.0  # float ondalik sayilar.
+muz_fiyati = 12.60  # float ondalik sayilar.
 
 if age == muz_fiyati:
     print("YYEsittir")
@@ -43,6 +43,7 @@ print(a)
 #list: liste
 
 isimler = ["Hasari", "Mehmet", "Ayse", "Ferhat"]
+
 ad = isimler[2]
 print(ad)
 #degerlerii degistirmek icin
@@ -105,6 +106,7 @@ print(sonuc)
 
 #dictionary :sozluk
 muhendisler = {'ahmet':12, 'mehmet':14, 'veli':49}
+
 print("ahmetin maasi",muhendisler['ahmet'])
 muhendisler['ahmet'] = 33
 print("ahmetin maasi",muhendisler['ahmet'])
@@ -128,3 +130,14 @@ def max_salary(employee):
 
 isim,en_buyuk_maas = max_salary(muhendisler)
 print("Zengin isim=", isim, "maas", en_buyuk_maas)
+
+
+#2-Dimension list (array)
+employee = [["Haydarov", "Haydar", 32, 4000], ["Mamaciyali", "Hasari", 50, 3500]]
+
+print("age=", employee[0][2])
+
+employee = [{"last":"Haydarov", "first:":"Haydar", "age":32, "salary":4000},
+            {"last":"Mamaciyali", "first:":"Hasari", "age":50, "salary":3500}]
+
+print("age=", employee[0]['age'])

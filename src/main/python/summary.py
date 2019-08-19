@@ -2,11 +2,11 @@
 
 isim = "Eyub"  # String
 soyad = 'Karahanli'
-
+soyad = "DigerSoyad"
 print(isim, "     -->", soyad, ":", 52)
 
 ad = "Ahmet"
-soyad = "KarahanliAAAKarabey"
+soyad = "Karabey"
 
 isim = ad + "AAA" + soyad
 print(isim)
@@ -46,6 +46,9 @@ isimler = ["Hasari", "Mehmet", "Ayse", "Ferhat"]
 
 ad = isimler[2]
 print(ad)
+
+son_isim = isimler[len(isimler)-1]
+print(son_isim)
 #degerlerii degistirmek icin
 isimler[2] = "Fatma"
 print(isimler[2])
@@ -87,7 +90,7 @@ def kare_toplam(sayilar):
 
 #fonksiyonu calistirmak icin
 #sonuc = kare_toplam(sayilar)
-sonuc = kare_toplam([7, 8, 9, 11, 6, 5])
+sonuc = kare_toplam(sayilar)
 print(sonuc)
 
 
@@ -134,10 +137,14 @@ print("Zengin isim=", isim, "maas", en_buyuk_maas)
 
 #2-Dimension list (array)
 employee = [["Haydarov", "Haydar", 32, 4000], ["Mamaciyali", "Hasari", 50, 3500]]
+print(len(employee))
+print(len(employee[0]))
+
 
 print("age=", employee[0][2])
 
 employee = [{"last":"Haydarov", "first:":"Haydar", "age":32, "salary":4000},
             {"last":"Mamaciyali", "first:":"Hasari", "age":50, "salary":3500}]
+print(len(employee))
 
 print("age=", employee[0]['age'])

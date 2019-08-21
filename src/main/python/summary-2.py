@@ -21,11 +21,27 @@ def degistir(students):
         sonuc.append(ogrenci)
     return sonuc
 
+def tersi(students):
+    sonuc = []
+    for o in students:
+        ogrenci = Student(o['isim'], o['ay'])
+        sonuc.append(ogrenci)
+    return sonuc
+
+
+#sozluk dictionary nasil calisiyor: ekle, sil, ulasma
+#liste: list:  ekle, sil, ulasma
+#Class: nasil olusturulor, nasil ulasilar (sifat: field, property)
 
 print("----------------------------")
 ogrencilerx = degistir(ogrenciler)
 print(ogrencilerx)
+print("----------------------------")
+ogrencilery = tersi(ogrencilerx)
+print(ogrencilery)
 
+for o in ogrencilery:
+    print(o.name, o.birthday)
 
 def hesapla(sayilar):
     sonuc = {}

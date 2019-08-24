@@ -27,6 +27,10 @@ func (e Employee) Print() {
 	fmt.Println(e.NameAge(" "))
 }
 
+func init() {
+	fmt.Println("..............")
+}
+
 var (
 	home   = os.Getenv("HOME")
 	user   = os.Getenv("USER")

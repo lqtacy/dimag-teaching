@@ -21,6 +21,7 @@ def degistir(students):
         sonuc.append(ogrenci)
     return sonuc
 
+
 def tersi(students):
     sonuc = []
     for o in students:
@@ -29,9 +30,9 @@ def tersi(students):
     return sonuc
 
 
-#sozluk dictionary nasil calisiyor: ekle, sil, ulasma
-#liste: list:  ekle, sil, ulasma
-#Class: nasil olusturulor, nasil ulasilar (sifat: field, property)
+# sozluk dictionary nasil calisiyor: ekle, sil, ulasma
+# liste: list:  ekle, sil, ulasma
+# Class: nasil olusturulor, nasil ulasilar (sifat: field, property)
 
 print("----------------------------")
 ogrencilerx = degistir(ogrenciler)
@@ -42,6 +43,7 @@ print(ogrencilery)
 
 for o in ogrencilery:
     print(o.name, o.birthday)
+
 
 def hesapla(sayilar):
     sonuc = {}
@@ -77,3 +79,7 @@ print(sonuclar)
 print(a.birthday)
 
 print(m.name)
+
+f = lambda x: x + 1
+
+print(f(9.0))

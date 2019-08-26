@@ -83,3 +83,7 @@ print(m.name)
 f = lambda x: x + 1
 
 print(f(9.0))
+
+f = lambda x, y: x + y
+
+print(f(9, 90))

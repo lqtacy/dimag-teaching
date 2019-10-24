@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Dimag</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+
+
+        .employee-name {
+            color: #0c78cf;
+            font-size: larger;
+            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+        }
+
+        #employee1{
+            position: fixed;
+            width: 300px;
+            /*direction: rtl;*/
+        }
+        #employee2{
+            position: relative;
+            /*direction: rtl;*/
+        }
+
+        .demo2 {
+            color: blue;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+<h1>Tarihimiz</h1>
+
+<div id="employee1" class="employee-name">
+    Haydar
+</div>
+
+<div id="employee2" class="employee-name">
+    Ali
+</div>
+
+<p>Iste biz tarihte boyle isler yaptik....</p>
+
+<div class="progress">
+<div class="progress-bar w-75" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+    </div>
+</div>
+
+<div class="bg-info clearfix">
+    <button type="button" class="btn btn-secondary float-left">Example Button floated left</button>
+    <button type="button" class="btn btn-secondary float-right">Example Button floated right</button>
+</div>
+
+<script>
+
+    const PI_X = 3.14778
+
+    //"use strict";
+let name
+    const NAME = "Hasari"
+    name = "Ahmet"
+
+    let date = new Date();
+    // $("#tarih").html(date)
+    // $("#abc").html("test....")
+
+    function change() {
+        $(".demo").addClass("demo2");
+    }
+
+    $("#employee1").click(function () {
+        alert("Hello:"+PI_X)
+
+        $("#abc").html("Best....." + Math.floor(Math.random() * 10))
+    });
+
+</script>
+
+<input class="w3-button w3-black" type="button" value="Gonder" onclick="change()">
+
+
+</body>
+</html>
+
+

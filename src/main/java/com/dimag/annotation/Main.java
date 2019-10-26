@@ -1,11 +1,13 @@
 package com.dimag.annotation;
 
+import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
+	private static final Logger log = Logger.getLogger(Main.class.getName());
 
 	private Map<String, Processor> processorMap = new HashMap();
 
@@ -14,7 +16,7 @@ public class Main {
 		for (Class<?> cl : ref.getTypesAnnotatedWith(Task.class)) {
 			Task annotation = cl.getAnnotation(Task.class);
 			String description = annotation.description();
-			System.out.println("Adding processor:"+annotation.name()+" ==>"+description);
+			System.out.println("Adding processor:" + annotation.name() + " ==>" + description);
 			addProcessor(annotation.name(), cl);
 		}
 
@@ -28,6 +30,7 @@ public class Main {
 
 	public void startProcess(String command) throws Exception {
 		Processor processor = processorMap.get(command);
+		System.out.println("Running:" + command);
 		if (processor == null) {
 			throw new Exception("Processor not found:" + command);
 		}

@@ -1,5 +1,7 @@
 package com.dimag.annotation;
 
+import com.dimag.annotation.processor.CleanFiles;
+import com.dimag.annotation.processor.ListFiles;
 import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 
@@ -12,6 +14,7 @@ public class Main {
 	private Map<String, Processor> processorMap = new HashMap();
 
 	public Main() throws Exception {
+		//reflection
 		Reflections ref = new Reflections("com.dimag.annotation.processor");
 		for (Class<?> cl : ref.getTypesAnnotatedWith(Task.class)) {
 			Task annotation = cl.getAnnotation(Task.class);
@@ -23,6 +26,7 @@ public class Main {
 	}
 
 	public void addProcessor(String name, Class clazz) throws Exception {
+		//reflection
 		Processor processor = (Processor) clazz.getDeclaredConstructor().newInstance();
 		processorMap.put(name, processor);
 
@@ -37,8 +41,15 @@ public class Main {
 		processor.process();
 	}
 
+
 	public static void main(String[] args) throws Exception {
 		Main main = new Main();
+
+		Processor p = new ListFiles();
+		p.after();
+
+		p = new CleanFiles();
+		p.after();
 
 		for (String command : args) {
 			main.startProcess(command);

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public interface KnowsHowToPrint {
 	void print();
+
 	default void sendAlert(){
 		//alarm gonder...
 	}

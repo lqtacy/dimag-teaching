@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Player {
 	private List<Music> playList = new ArrayList<>();
-	private Optional<Music> currentMusic;
+	private Optional<Music> currentMusic = Optional.empty();
 
 	public void addSong(Music music) {
 		playList.add(music);
